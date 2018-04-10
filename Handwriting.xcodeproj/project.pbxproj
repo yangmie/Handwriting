@@ -13,6 +13,7 @@
 		FEF1B215207CEAC300708F1A /* Handwriting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B213207CEAC300708F1A /* Handwriting.xcdatamodeld */; };
 		FEF1B217207CEAC400708F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEF1B216207CEAC400708F1A /* Assets.xcassets */; };
 		FEF1B21A207CEAC400708F1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF1B218207CEAC400708F1A /* LaunchScreen.storyboard */; };
+		FEF1B224207CFB0B00708F1A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B223207CFB0B00708F1A /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FEF1B216207CEAC400708F1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEF1B219207CEAC400708F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEF1B21B207CEAC400708F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEF1B223207CFB0B00708F1A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				FEF1B20C207CEAC300708F1A /* AppDelegate.swift */,
 				FEF1B20E207CEAC300708F1A /* ViewController.swift */,
+				FEF1B223207CFB0B00708F1A /* CategoryCell.swift */,
 				FEF1B210207CEAC300708F1A /* Main.storyboard */,
 				FEF1B216207CEAC400708F1A /* Assets.xcassets */,
 				FEF1B218207CEAC400708F1A /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				FEF1B215207CEAC300708F1A /* Handwriting.xcdatamodeld in Sources */,
 				FEF1B20F207CEAC300708F1A /* ViewController.swift in Sources */,
 				FEF1B20D207CEAC300708F1A /* AppDelegate.swift in Sources */,
+				FEF1B224207CFB0B00708F1A /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
