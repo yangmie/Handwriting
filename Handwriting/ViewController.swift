@@ -37,31 +37,12 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCategoryAction(sender:)))
         navigationController?.navigationBar.barTintColor = UIColor_Yang.init(rgb: 0x8fabd8, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.black
-        
-        fetchCategories()
     }
 
-    @IBAction func addCategoryAction(sender: Any) {
-        let alertController = UIAlertController(title: "New Category", message: "Please enter new category name", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "My Handwriting"
-        }
-        
-        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { alert -> Void in
-            let textField = alertController.textFields![0] as UITextField
-            if textField.text!.count > 0 {
-                self.saveCategory(name: textField.text!)
-                self.fetchCategories()
-            }
-        })
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
-            (action : UIAlertAction!) -> Void in })
-
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-
-        present(alertController, animated: true, completion: nil)
+        fetchCategories()
     }
 
     func fetchCategories() {
@@ -71,7 +52,13 @@ class ViewController: UIViewController {
 
             categoryArray = []
             for c in categories {
-                categoryArray.append(Category(categoryName: c.categoryName!, categoryImage: nil))
+                if let filePath = c.filePath {
+                    let contentsOfFilePath = UIImage(contentsOfFile: filePath)
+                    categoryArray.append(Category(categoryName: c.categoryName!, categoryImage: contentsOfFilePath))
+                } else {
+                    categoryArray.append(Category(categoryName: c.categoryName!, categoryImage: nil))
+                }
+
             }
             collectionView.reloadData()
         } catch {
@@ -90,6 +77,29 @@ class ViewController: UIViewController {
             print("Failed saving")
         }
     }
+
+    @IBAction func addCategoryAction(sender: Any) {
+        let alertController = UIAlertController(title: "New Category", message: "Please enter new category name", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "My Handwriting"
+        }
+
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { alert -> Void in
+            let textField = alertController.textFields![0] as UITextField
+            if textField.text!.count > 0 {
+                self.saveCategory(name: textField.text!)
+                self.fetchCategories()
+            }
+        })
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -106,6 +116,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
         let category = categoryArray[indexPath.row]
         cell.nameLabel.text = category.categoryName
+        cell.coverImageView.image = category.categoryImage
 
         return cell
     }

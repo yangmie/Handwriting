@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CategoryData" representedClassName="CategoryData" syncable="YES" codeGenerationType="class">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="HandwritingData" representedClassName="HandwritingData" syncable="YES" codeGenerationType="class">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,7 +10,7 @@
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CategoryData" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="CategoryData" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="HandwritingData" positionX="-54" positionY="0" width="128" height="90"/>
     </elements>
 </model>

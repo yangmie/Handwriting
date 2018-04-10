@@ -11,6 +11,8 @@ import CoreData
 
 struct Handwriting {
     var description: String
+    var categoryName: String
+    var filePath: String
     var image: UIImage
 }
 
@@ -51,15 +53,14 @@ class GalleryViewController: UIViewController {
         fetchRequest.predicate = NSPredicate(format: "categoryName = %@", categoryName!)
 
         do {
-            let handwritings = try context.fetch(fetchRequest)
-
             handwritingArray = []
-            print("result count = %zd", handwritings.count)
+            let handwritings = try context.fetch(fetchRequest)
+            
             for h in handwritings {
                 if let filePath = h.filePath {
                     if FileManager.default.fileExists(atPath: filePath) {
                         if let contentsOfFilePath = UIImage(contentsOfFile: filePath) {
-                            handwritingArray.append(Handwriting(description: h.desc!, image: contentsOfFilePath))
+                            handwritingArray.append(Handwriting(description: h.desc!, categoryName: categoryName!, filePath: filePath, image: contentsOfFilePath))
                         }
                     }
                 }
@@ -92,11 +93,16 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let handwriting = handwritingArray[indexPath.row]
 
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let handwritingVC = mainStoryboard.instantiateViewController(withIdentifier: String(describing: HandwritingViewController.self)) as! HandwritingViewController
+        handwritingVC.handwriting = handwriting
+        navigationController?.pushViewController(handwritingVC, animated: true)
     }
 }
 
-extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, AddHandwritingViewControllerDelegate {
 
     @IBAction func addHandwritingAction(sender: Any) {
 
@@ -117,7 +123,7 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
     func openCamera() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-            imagePicker.allowsEditing = false
+            imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         } else {
             let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
@@ -128,7 +134,7 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     func openGallary() {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
 
         self.present(imagePicker, animated: true, completion: nil)
     }
@@ -139,10 +145,24 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true, completion: nil)
 
         // Get the picture we took
-        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        var image = info[UIImagePickerControllerEditedImage] as! UIImage
         image = fixOrientation(img: image)
 
+        let handwriting = Handwriting(description: "", categoryName: "", filePath: "", image: image)
+        showAddHandwritingVC(handwriting: handwriting)
+    }
+
+    func showAddHandwritingVC(handwriting: Handwriting) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let addHandwritingVC = mainStoryboard.instantiateViewController(withIdentifier: String(describing: AddHandwritingViewController.self)) as! AddHandwritingViewController
+        addHandwritingVC.handwriting = handwriting
+        addHandwritingVC.delegate = self
+        navigationController?.pushViewController(addHandwritingVC, animated: true)
+    }
+
+    func saveHandwriting(handwriting: Handwriting) {
         // Save imageData to filePath
+        let image = handwriting.image
 
         // Get access to shared instance of the file manager
         let fileManager = FileManager.default
@@ -167,8 +187,8 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
         let entity = NSEntityDescription.entity(forEntityName: "HandwritingData", in: context)
         let newHandwriting = HandwritingData(entity: entity!, insertInto: context)
         newHandwriting.filePath = filePath.path
+        newHandwriting.desc = handwriting.description
         newHandwriting.categoryName = categoryName!
-        newHandwriting.desc = "test description"
 
         do {
             try context.save()

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A495C2065975447A2D4EAC25 /* Pods_Handwriting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FDF69DCAE1C15A3C6CC43A /* Pods_Handwriting.framework */; };
 		FEF1B20D207CEAC300708F1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B20C207CEAC300708F1A /* AppDelegate.swift */; };
 		FEF1B20F207CEAC300708F1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B20E207CEAC300708F1A /* ViewController.swift */; };
 		FEF1B212207CEAC300708F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF1B210207CEAC300708F1A /* Main.storyboard */; };
@@ -17,9 +18,14 @@
 		FEF1B226207D0B0B00708F1A /* UIColor+Yang.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B225207D0B0B00708F1A /* UIColor+Yang.swift */; };
 		FEF1B22A207D250E00708F1A /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B229207D250E00708F1A /* GalleryViewController.swift */; };
 		FEF1B22C207D267100708F1A /* HandwritingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B22B207D267100708F1A /* HandwritingCell.swift */; };
+		FEF1B22E207D614500708F1A /* HandwritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B22D207D614500708F1A /* HandwritingViewController.swift */; };
+		FEF1B230207D66DA00708F1A /* AddHandwritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B22F207D66DA00708F1A /* AddHandwritingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51FDF69DCAE1C15A3C6CC43A /* Pods_Handwriting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Handwriting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DF6781CC0C0FE83188FEA4F /* Pods-Handwriting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Handwriting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Handwriting/Pods-Handwriting.debug.xcconfig"; sourceTree = "<group>"; };
+		7B335C630A5863FB00378B88 /* Pods-Handwriting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Handwriting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Handwriting/Pods-Handwriting.release.xcconfig"; sourceTree = "<group>"; };
 		FEF1B209207CEAC300708F1A /* Handwriting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Handwriting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEF1B20C207CEAC300708F1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEF1B20E207CEAC300708F1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +38,8 @@
 		FEF1B225207D0B0B00708F1A /* UIColor+Yang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Yang.swift"; sourceTree = "<group>"; };
 		FEF1B229207D250E00708F1A /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		FEF1B22B207D267100708F1A /* HandwritingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandwritingCell.swift; sourceTree = "<group>"; };
+		FEF1B22D207D614500708F1A /* HandwritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandwritingViewController.swift; sourceTree = "<group>"; };
+		FEF1B22F207D66DA00708F1A /* AddHandwritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHandwritingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A495C2065975447A2D4EAC25 /* Pods_Handwriting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38329178854F26246A84E11D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51FDF69DCAE1C15A3C6CC43A /* Pods_Handwriting.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C0AC2D43EEF144CBACDB6DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DF6781CC0C0FE83188FEA4F /* Pods-Handwriting.debug.xcconfig */,
+				7B335C630A5863FB00378B88 /* Pods-Handwriting.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FEF1B200207CEAC300708F1A = {
 			isa = PBXGroup;
 			children = (
 				FEF1B20B207CEAC300708F1A /* Handwriting */,
 				FEF1B20A207CEAC300708F1A /* Products */,
+				3C0AC2D43EEF144CBACDB6DF /* Pods */,
+				38329178854F26246A84E11D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +98,8 @@
 				FEF1B223207CFB0B00708F1A /* CategoryCell.swift */,
 				FEF1B229207D250E00708F1A /* GalleryViewController.swift */,
 				FEF1B22B207D267100708F1A /* HandwritingCell.swift */,
+				FEF1B22D207D614500708F1A /* HandwritingViewController.swift */,
+				FEF1B22F207D66DA00708F1A /* AddHandwritingViewController.swift */,
 				FEF1B210207CEAC300708F1A /* Main.storyboard */,
 				FEF1B216207CEAC400708F1A /* Assets.xcassets */,
 				FEF1B218207CEAC400708F1A /* LaunchScreen.storyboard */,
@@ -86,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FEF1B21E207CEAC400708F1A /* Build configuration list for PBXNativeTarget "Handwriting" */;
 			buildPhases = (
+				68C404263273818B68A97739 /* [CP] Check Pods Manifest.lock */,
 				FEF1B205207CEAC300708F1A /* Sources */,
 				FEF1B206207CEAC300708F1A /* Frameworks */,
 				FEF1B207207CEAC300708F1A /* Resources */,
+				A241EFDDD80A00A1C9B17F07 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -145,12 +177,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		68C404263273818B68A97739 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Handwriting-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A241EFDDD80A00A1C9B17F07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Handwriting/Pods-Handwriting-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Handwriting/Pods-Handwriting-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FEF1B205207CEAC300708F1A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF1B22E207D614500708F1A /* HandwritingViewController.swift in Sources */,
 				FEF1B215207CEAC300708F1A /* Handwriting.xcdatamodeld in Sources */,
+				FEF1B230207D66DA00708F1A /* AddHandwritingViewController.swift in Sources */,
 				FEF1B20F207CEAC300708F1A /* ViewController.swift in Sources */,
 				FEF1B20D207CEAC300708F1A /* AppDelegate.swift in Sources */,
 				FEF1B22C207D267100708F1A /* HandwritingCell.swift in Sources */,
@@ -298,15 +371,13 @@
 		};
 		FEF1B21F207CEAC400708F1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DF6781CC0C0FE83188FEA4F /* Pods-Handwriting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2JJ3YTX5MV;
 				INFOPLIST_FILE = Handwriting/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yangmie.Handwriting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -316,15 +387,13 @@
 		};
 		FEF1B220207CEAC400708F1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B335C630A5863FB00378B88 /* Pods-Handwriting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2JJ3YTX5MV;
 				INFOPLIST_FILE = Handwriting/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yangmie.Handwriting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
