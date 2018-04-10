@@ -33,16 +33,19 @@ class ViewController: UIViewController {
 
         fullScreenSize = UIScreen.main.bounds.size
 
-        title = "My Handwriting"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCategoryAction(sender:)))
-        navigationController?.navigationBar.barTintColor = UIColor_Yang.init(rgb: 0x8fabd8, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.black
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        navigationItem.title = "Miemie Handwriting"
         fetchCategories()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationItem.title = ""
     }
 
     func fetchCategories() {

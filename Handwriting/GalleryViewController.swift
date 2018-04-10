@@ -42,7 +42,6 @@ class GalleryViewController: UIViewController {
         title = categoryName!
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addHandwritingAction(sender:)))
-        navigationController?.navigationBar.barTintColor = UIColor_Yang.init(rgb: 0x8fabd8, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.black
 
         fetchHandwritings()

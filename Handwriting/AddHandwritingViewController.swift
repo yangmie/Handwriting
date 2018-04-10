@@ -25,7 +25,6 @@ class AddHandwritingViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveHandwritingAction(sender:)))
-        navigationController?.navigationBar.barTintColor = UIColor_Yang.init(rgb: 0x8fabd8, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.black
 
         imageView.image = handwriting.image
