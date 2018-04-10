@@ -38,7 +38,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lbf-H1-Oxd">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vYP-yf-NmB">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="vYP-yf-NmB">
                                     <size key="itemSize" width="200" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -107,6 +107,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="coverImageView" destination="dxh-UL-IQr" id="CLS-Pl-cPf"/>
+                                            <outlet property="layerView" destination="B8k-lu-Uep" id="K70-hu-F6q"/>
                                             <outlet property="nameLabel" destination="YC9-9r-fm9" id="Zsx-aC-E2i"/>
                                         </connections>
                                     </collectionViewCell>

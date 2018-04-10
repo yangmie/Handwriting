@@ -24,8 +24,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = "My Handwriting"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCategoryAction(sender:)))
-
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCategoryAction(sender:)))
+        self.navigationController?.navigationBar.barTintColor = UIColor_Yang.init(rgb: 0x8fabd8, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        
         fullScreenSize = UIScreen.main.bounds.size
     }
 
