@@ -3,7 +3,13 @@
     <entity name="CategoryData" representedClassName="CategoryData" syncable="YES" codeGenerationType="class">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="HandwritingData" representedClassName="HandwritingData" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CategoryData" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="HandwritingData" positionX="-54" positionY="0" width="128" height="90"/>
     </elements>
 </model>

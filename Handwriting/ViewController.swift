@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var context: NSManagedObjectContext!
 
     var categoryArray = [Category]()
-    var fullScreenSize :CGSize!
+    var fullScreenSize: CGSize!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +31,13 @@ class ViewController: UIViewController {
         container = appDelegate.persistentContainer
         context = container.viewContext
 
+        fullScreenSize = UIScreen.main.bounds.size
+
         title = "My Handwriting"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addCategoryAction(sender:)))
         navigationController?.navigationBar.barTintColor = UIColor_Yang.init(rgb: 0x8fabd8, alpha: 1)
         navigationController?.navigationBar.tintColor = UIColor.black
         
-        fullScreenSize = UIScreen.main.bounds.size
         fetchCategories()
     }
 
@@ -64,15 +65,15 @@ class ViewController: UIViewController {
     }
 
     func fetchCategories() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CategoryData")
+        let fetchRequest = NSFetchRequest<CategoryData>(entityName: "CategoryData")
         do {
             let categories = try context.fetch(fetchRequest)
 
             categoryArray = []
-            for c in categories as! [NSManagedObject] {
-                categoryArray.append(Category(categoryName: c.value(forKey: "categoryName") as! String, categoryImage: nil))
-                collectionView.reloadData()
+            for c in categories {
+                categoryArray.append(Category(categoryName: c.categoryName!, categoryImage: nil))
             }
+            collectionView.reloadData()
         } catch {
             print("entered catch for categories fetch request")
         }
@@ -107,5 +108,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.nameLabel.text = category.categoryName
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = categoryArray[indexPath.row]
+
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let galleryVC = mainStoryboard.instantiateViewController(withIdentifier: String(describing: GalleryViewController.self)) as! GalleryViewController
+        galleryVC.categoryName = category.categoryName
+        navigationController?.pushViewController(galleryVC, animated: true)
     }
 }

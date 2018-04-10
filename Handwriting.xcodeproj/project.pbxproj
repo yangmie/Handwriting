@@ -15,6 +15,8 @@
 		FEF1B21A207CEAC400708F1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF1B218207CEAC400708F1A /* LaunchScreen.storyboard */; };
 		FEF1B224207CFB0B00708F1A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B223207CFB0B00708F1A /* CategoryCell.swift */; };
 		FEF1B226207D0B0B00708F1A /* UIColor+Yang.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B225207D0B0B00708F1A /* UIColor+Yang.swift */; };
+		FEF1B22A207D250E00708F1A /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B229207D250E00708F1A /* GalleryViewController.swift */; };
+		FEF1B22C207D267100708F1A /* HandwritingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1B22B207D267100708F1A /* HandwritingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		FEF1B21B207CEAC400708F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEF1B223207CFB0B00708F1A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FEF1B225207D0B0B00708F1A /* UIColor+Yang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Yang.swift"; sourceTree = "<group>"; };
+		FEF1B229207D250E00708F1A /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		FEF1B22B207D267100708F1A /* HandwritingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandwritingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				FEF1B20C207CEAC300708F1A /* AppDelegate.swift */,
-				FEF1B20E207CEAC300708F1A /* ViewController.swift */,
 				FEF1B225207D0B0B00708F1A /* UIColor+Yang.swift */,
+				FEF1B20E207CEAC300708F1A /* ViewController.swift */,
 				FEF1B223207CFB0B00708F1A /* CategoryCell.swift */,
+				FEF1B229207D250E00708F1A /* GalleryViewController.swift */,
+				FEF1B22B207D267100708F1A /* HandwritingCell.swift */,
 				FEF1B210207CEAC300708F1A /* Main.storyboard */,
 				FEF1B216207CEAC400708F1A /* Assets.xcassets */,
 				FEF1B218207CEAC400708F1A /* LaunchScreen.storyboard */,
@@ -147,6 +153,8 @@
 				FEF1B215207CEAC300708F1A /* Handwriting.xcdatamodeld in Sources */,
 				FEF1B20F207CEAC300708F1A /* ViewController.swift in Sources */,
 				FEF1B20D207CEAC300708F1A /* AppDelegate.swift in Sources */,
+				FEF1B22C207D267100708F1A /* HandwritingCell.swift in Sources */,
+				FEF1B22A207D250E00708F1A /* GalleryViewController.swift in Sources */,
 				FEF1B224207CFB0B00708F1A /* CategoryCell.swift in Sources */,
 				FEF1B226207D0B0B00708F1A /* UIColor+Yang.swift in Sources */,
 			);
