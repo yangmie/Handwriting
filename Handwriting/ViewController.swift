@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "Miemie Handwriting"
+        navigationItem.title = "Handwriting"
         fetchCategories()
     }
 

@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-427" y="322"/>
         </scene>
-        <!--Miemie Handwriting-->
+        <!--Handwriting-->
         <scene sceneID="DJW-YY-yur">
             <objects>
                 <viewController id="YKE-SX-iag" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         <color key="backgroundColor" red="0.41960784309999999" green="0.6705882353" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="vfe-kb-P9z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Miemie Handwriting" id="pIZ-Mo-BOy"/>
+                    <navigationItem key="navigationItem" title="Handwriting" id="pIZ-Mo-BOy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNM-3S-opg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
