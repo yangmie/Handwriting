@@ -14,6 +14,7 @@ struct Handwriting {
     var categoryName: String
     var filePath: String
     var image: UIImage
+    var data: HandwritingData?
 }
 
 class GalleryViewController: UIViewController {
@@ -41,8 +42,14 @@ class GalleryViewController: UIViewController {
 
         title = categoryName!
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addHandwritingAction(sender:)))
+        let deleteButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addHandwritingAction(sender:)))
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editCategoryAction(sender:)))
+        navigationItem.rightBarButtonItems = [deleteButton, editButton]
         navigationController?.navigationBar.tintColor = UIColor.black
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         fetchHandwritings()
     }
@@ -59,7 +66,7 @@ class GalleryViewController: UIViewController {
                 if let filePath = h.filePath {
                     if FileManager.default.fileExists(atPath: filePath) {
                         if let contentsOfFilePath = UIImage(contentsOfFile: filePath) {
-                            handwritingArray.append(Handwriting(description: h.desc!, categoryName: categoryName!, filePath: filePath, image: contentsOfFilePath))
+                            handwritingArray.append(Handwriting(description: h.desc!, categoryName: categoryName!, filePath: filePath, image: contentsOfFilePath, data: h))
                         }
                     }
                 }
@@ -73,7 +80,7 @@ class GalleryViewController: UIViewController {
 
 }
 
-extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, HandwritingViewControllerDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return handwritingArray.count
     }
@@ -97,7 +104,55 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let handwritingVC = mainStoryboard.instantiateViewController(withIdentifier: String(describing: HandwritingViewController.self)) as! HandwritingViewController
         handwritingVC.handwriting = handwriting
+        handwritingVC.delegate = self
         navigationController?.pushViewController(handwritingVC, animated: true)
+    }
+
+    func reloadPhotos() {
+        fetchHandwritings()
+    }
+
+    @IBAction func editCategoryAction(sender: Any) {
+        let alertController = UIAlertController(title: "Edit Category", message: "Please enter new category name", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "My Handwriting"
+            textField.text = self.categoryName!
+        }
+
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: { alert -> Void in
+            let textField = alertController.textFields![0] as UITextField
+            if textField.text!.count > 0 {
+                self.saveEditCategoryName(name: textField.text!)
+            }
+        })
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
+
+    func saveEditCategoryName(name: String) {
+        let fetchRequest = NSFetchRequest<CategoryData>(entityName: "CategoryData")
+        fetchRequest.predicate = NSPredicate(format: "categoryName = %@", categoryName!)
+        do {
+            let categories = try context.fetch(fetchRequest)
+            if let c = categories.first {
+                c.categoryName = name
+            }
+            title = name
+
+            for h in handwritingArray {
+                if let data = h.data {
+                    data.categoryName = name
+                }
+            }
+        } catch {
+            print("entered catch for categories fetch request")
+        }
     }
 }
 
@@ -147,7 +202,7 @@ extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationCo
         var image = info[UIImagePickerControllerEditedImage] as! UIImage
         image = fixOrientation(img: image)
 
-        let handwriting = Handwriting(description: "", categoryName: "", filePath: "", image: image)
+        let handwriting = Handwriting(description: "", categoryName: "", filePath: "", image: image, data: nil)
         showAddHandwritingVC(handwriting: handwriting)
     }
 

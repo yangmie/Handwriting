@@ -9,11 +9,17 @@
 import UIKit
 import CoreData
 
-class HandwritingViewController: UIViewController {
+protocol HandwritingViewControllerDelegate {
+    func reloadPhotos()
+}
+
+class HandwritingViewController: UIViewController, EditHandwritingViewControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var setCoverButton: UIButton!
+
+    var delegate: HandwritingViewControllerDelegate?
 
     var appDelegate: AppDelegate!
     var container: NSPersistentContainer!
@@ -33,6 +39,12 @@ class HandwritingViewController: UIViewController {
 
         setCoverButton.layer.masksToBounds = true
         setCoverButton.layer.cornerRadius = 5.0
+
+        let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePhoto))
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editPhoto))
+        navigationItem.rightBarButtonItems = [deleteButton, editButton]
+
+        navigationController?.navigationBar.tintColor = UIColor.black
     }
 
     @IBAction func setCoverPhotoAction(sender: Any) {
@@ -43,11 +55,36 @@ class HandwritingViewController: UIViewController {
             let categories = try context.fetch(fetchRequest)
             if categories.count > 0 {
                 let c = categories.first
-                c?.setValue(handwriting.filePath, forKey: "filePath")
+                c?.filePath = handwriting.filePath
             }
 
         } catch {
             print("entered catch for categories fetch request")
         }
+    }
+
+    @IBAction func deletePhoto() {
+        if let data = handwriting.data {
+            context.delete(data)
+            do {
+                try context.save()
+                delegate?.reloadPhotos()
+                navigationController?.popViewController(animated: true)
+            } catch {
+            }
+        }
+    }
+
+    @IBAction func editPhoto() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let addHandwritingVC = mainStoryboard.instantiateViewController(withIdentifier: String(describing: AddHandwritingViewController.self)) as! AddHandwritingViewController
+        addHandwritingVC.handwriting = handwriting
+        addHandwritingVC.editDelegate = self
+        navigationController?.pushViewController(addHandwritingVC, animated: true)
+    }
+
+    func reloadHandwriting(handwriting: Handwriting) {
+        self.handwriting = handwriting
+        descriptionLabel.text = handwriting.description
     }
 }

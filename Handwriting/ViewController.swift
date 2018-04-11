@@ -50,6 +50,9 @@ class ViewController: UIViewController {
 
     func fetchCategories() {
         let fetchRequest = NSFetchRequest<CategoryData>(entityName: "CategoryData")
+        let descriptor = NSSortDescriptor(key: "categoryName", ascending: true)
+        fetchRequest.sortDescriptors = [descriptor]
+
         do {
             let categories = try context.fetch(fetchRequest)
 

@@ -12,12 +12,17 @@ protocol AddHandwritingViewControllerDelegate {
     func saveHandwriting(handwriting: Handwriting)
 }
 
+protocol EditHandwritingViewControllerDelegate {
+    func reloadHandwriting(handwriting: Handwriting)
+}
+
 class AddHandwritingViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
 
     var delegate: AddHandwritingViewControllerDelegate?
+    var editDelegate: EditHandwritingViewControllerDelegate?
 
     var handwriting: Handwriting!
 
@@ -28,6 +33,7 @@ class AddHandwritingViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.black
 
         imageView.image = handwriting.image
+        textView.text = handwriting.description
         textView.textContainerInset = UIEdgeInsets.zero
     }
 
@@ -39,7 +45,9 @@ class AddHandwritingViewController: UIViewController {
 
     @IBAction func saveHandwritingAction(sender: Any) {
         handwriting.description = textView.text
+        handwriting.data?.desc = textView.text
         navigationController?.popViewController(animated: true)
         delegate?.saveHandwriting(handwriting: handwriting)
+        editDelegate?.reloadHandwriting(handwriting: handwriting)
     }
 }
